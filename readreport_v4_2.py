@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys,os,glob
 import numpy as np
 from scipy.stats.distributions import binom
@@ -51,13 +53,13 @@ class seqObject:
 		self.A,self.C,self.G,self.T,self.gap,self.totalcount,
 		self.appos,self.majoraa,self.majorcodon]
 		printlist = [str(x) for x in printlist]
-		print>>outfile,','.join(printlist)
+		print(','.join(printlist), file=outfile)
 	def printer_no3(self,outfile):
 		printlist = [self.sampname,self.segment,self.ntpos,self.majornt,
 		self.majorfreq,self.minornt,self.minorfreq,self.bcheck,
 		self.A,self.C,self.G,self.T,self.gap,self.totalcount]
 		printlist = [str(x) for x in printlist]
-		print>>outfile,','.join(printlist)
+		print(','.join(printlist), file=outfile)
 
 def seqUpdater(cigartuple,read,readidx,readq): #as long as you don't use updater again - good. cigartuple, read, readidx,readq
 	"""look up cigar the aligned sequence may have additional bases that aren't in the reference or may be missing
@@ -224,9 +226,9 @@ def binomCheck(ntpos): #checking the nt position for both forward and reverse ma
 
 		if len(topF) == 1 or len(topR) == 1:
 			accept = False
-			print 'unequal minor variant count in forward/reverse %d' % ntpos #%s= string %d = number variable ntpos has already been defined
-			print 'forward',fordict
-			print 'reverse',revdict
+			print('unequal minor variant count in forward/reverse %d' % ntpos) #%s= string %d = number variable ntpos has already been defined
+			print('forward',fordict)
+			print('reverse',revdict)
 			NOTESLIST.append('take a closer look at, only one minorvar %d' % ntpos)
 			NOTESLIST.append(fordict)
 			NOTESLIST.append(revdict)
@@ -238,7 +240,7 @@ def binomCheck(ntpos): #checking the nt position for both forward and reverse ma
 			r_minornt = topR[1]
 
 			if f_majornt != r_majornt or f_minornt != r_minornt:
-				print 'binom not equal'
+				print('binom not equal')
 				NOTESLIST.append('take a closer look at %d' % ntpos ) #this will be added to the notelist for what went wrong exactly
 				NOTESLIST.append([f_majornt,r_majornt,f_minornt,r_minornt])
 				accept = False
@@ -446,7 +448,7 @@ if __name__ == '__main__': #this will allow this module to be imported from anot
 
 			VARLIST_OUT = open("%s%s.%s.%s.%s.snplist.csv" % (FULLVARLIST_DIR,SAMPLENAME,STRAIN,SEGMENT,str(args.cutoff)),'w') #writing the file name for the snplist
 			HEADER = 'name,segment,ntpos,major,majorfreq,minor,minorfreq,binocheck,A,C,G,T,-,totalcount,aapos,majoraa,majorcodon,minoraa,minorcodon' #header for the snplist
-			print>>VARLIST_OUT,HEADER	#print out header to that file
+			print(HEADER, file=VARLIST_OUT)	#print out header to that file
 			SEQLIST = []
 			sys.stdout.write('Examining segment: %s  [%d/%d]\n' % (SEGMENT,segidx+1,len(REF_DICT) ))
 			sys.stdout.write('\tBegin populating forward and reverse dictionaries ...')
@@ -524,7 +526,7 @@ if __name__ == '__main__': #this will allow this module to be imported from anot
 				# sys.stdout.write('-= Analysis finished for segment =-')
 
 			except ValueError:
-				print 'This mapping failed for %s' % SEGMENT
+				print('This mapping failed for %s' % SEGMENT)
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
