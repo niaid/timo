@@ -150,28 +150,28 @@ def analyzer(isReverse,updatedOut): #takes output from above and puts in. isReve
 
             else:
                 if c == 'I':
-                    if tempinsdict.has_key(pos):
+                    if pos in tempinsdict:
                         tempinsdict[pos].append(nt)
                     else:
                         tempinsdict[pos] = [nt]
                 elif q >= args.qual: #quality passes threshold
-                    if REVERSE_DICT[pos].has_key(nt): #position populated
+                    if nt in REVERSE_DICT[pos]: #position populated
                         REVERSE_DICT[pos][nt] = REVERSE_DICT[pos][nt] + 1
                     else:
                         REVERSE_DICT[pos][nt] = 1
-                    if CONSENSUS_DICT[pos].has_key(nt):
+                    if nt in CONSENSUS_DICT[pos]:
                         CONSENSUS_DICT[pos][nt] = CONSENSUS_DICT[pos][nt] + 1
                     else:
                         CONSENSUS_DICT[pos][nt] = 1
         if tempinsdict:
             for ntpos in tempinsdict:
                 fullnt = ''.join(tempinsdict[ntpos])
-                if INSERTION_DICT.has_key(ntpos):
+                if ntpos in INSERTION_DICT:
                     pass
                 else:
                     INSERTION_DICT[ntpos] = {}
 
-                if INSERTION_DICT[ntpos].has_key(fullnt):
+                if fullnt in INSERTION_DICT[ntpos]:
                     INSERTION_DICT[ntpos][fullnt] = INSERTION_DICT[ntpos][fullnt] + 1
                 else:
                     INSERTION_DICT[ntpos][fullnt] = 1
@@ -183,29 +183,29 @@ def analyzer(isReverse,updatedOut): #takes output from above and puts in. isReve
 
             else:
                 if c == 'I': #insertion
-                    if tempinsdict.has_key(pos):
+                    if pos in tempinsdict:
                         tempinsdict[pos].append(nt)
                     else:
                         tempinsdict[pos] = [nt]
                 elif q >= args.qual:
-                    if FORWARD_DICT[pos].has_key(nt):
+                    if nt in FORWARD_DICT[pos]:
                         FORWARD_DICT[pos][nt] = FORWARD_DICT[pos][nt] + 1
                     else:
                         FORWARD_DICT[pos][nt] = 1
 
-                    if CONSENSUS_DICT[pos].has_key(nt):
+                    if nt in CONSENSUS_DICT[pos]:
                         CONSENSUS_DICT[pos][nt] = CONSENSUS_DICT[pos][nt] + 1
                     else:
                         CONSENSUS_DICT[pos][nt] = 1
         if tempinsdict:
             for ntpos in tempinsdict:
                 fullnt = ''.join(tempinsdict[ntpos])
-                if INSERTION_DICT.has_key(ntpos):
+                if ntpos in INSERTION_DICT:
                     pass
                 else:
                     INSERTION_DICT[ntpos] = {}
 
-                if INSERTION_DICT[ntpos].has_key(fullnt):
+                if fullnt in INSERTION_DICT[ntpos]:
                     INSERTION_DICT[ntpos][fullnt] = INSERTION_DICT[ntpos][fullnt] + 1
                 else:
                     INSERTION_DICT[ntpos][fullnt] = 1
@@ -374,15 +374,15 @@ def printer(outfile, sampname, SEGMENT, ntpos, bcheck, hasMinor): #this is how t
     G_nt = 0
     T_nt = 0
     gap_nt = 0
-    if tempd.has_key('A'):
+    if 'A' in tempd:
         A_nt = tempd['A']
-    if tempd.has_key('C'):
+    if 'C' in tempd:
         C_nt = tempd['C']
-    if tempd.has_key('G'):
+    if 'G' in tempd:
         G_nt = tempd['G']
-    if tempd.has_key('T'):
+    if 'T' in tempd:
         T_nt = tempd['T']
-    if tempd.has_key('-'):
+    if '-' in tempd:
         gap_nt = tempd['-']
     totalcount = sum(tempd.values())
     majornt =     max(tempd,key=tempd.get)
