@@ -435,7 +435,7 @@ if __name__ == '__main__': #this will allow this module to be imported from anot
         # samplebamdict[SAMPLENAME] = pysam.AlignmentFile(infile, "rb",check_header=False,check_sq=False )
 
     if args.segment is not None: #All segments relies on segment from reference
-        REF_DICT = dict((key,value) for key, value in REF_DICT.iteritems() if key == args.segment)
+        REF_DICT = dict((key,value) for key, value in REF_DICT.items() if key == args.segment)
         """Dictionaries are designed so that they have a key and each key has a value assigned to them. dict.iteritems()
         will return an iterator () over the dict key,value pairs - I am guessing that the iter part of this means that it is going through all
         key,value pairs"""
@@ -481,12 +481,12 @@ if __name__ == '__main__': #this will allow this module to be imported from anot
                         # createCombineDict()
                 sys.stdout.write('[done]\n')
                 sys.stdout.write('\tAnalyzing frequencies and binomial checks ...')
-                for ntpos in sorted(CONSENSUS_DICT.iterkeys()): #looking at each nt position going down
+                for ntpos in sorted(CONSENSUS_DICT.keys()): #looking at each nt position going down
                     totalcount = sum(CONSENSUS_DICT[ntpos].values())
-                    posdict = {k: v / float(totalcount) for k, v in CONSENSUS_DICT[ntpos].iteritems()}
+                    posdict = {k: v / float(totalcount) for k, v in CONSENSUS_DICT[ntpos].items()}
                     if posdict: #If posdict empty, this means there is no coverage
                         #max() will throw an error if dictionary is empty.
-                        maxfreq = max(posdict.iteritems(), key=operator.itemgetter(1))[1]
+                        maxfreq = max(posdict.items(), key=operator.itemgetter(1))[1]
 
                         if maxfreq >= (1 - args.cutoff): # indicates no "significant" minor variant
                             hasMinor = False
