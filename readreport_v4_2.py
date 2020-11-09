@@ -154,7 +154,7 @@ def analyzer(isReverse,updatedOut): #takes output from above and puts in. isReve
                         tempinsdict[pos].append(nt)
                     else:
                         tempinsdict[pos] = [nt]
-                elif q >= args.qual: #quality passes threshold
+                elif q == '-' or q >= args.qual: #quality passes threshold
                     if nt in REVERSE_DICT[pos]: #position populated
                         REVERSE_DICT[pos][nt] = REVERSE_DICT[pos][nt] + 1
                     else:
@@ -187,7 +187,7 @@ def analyzer(isReverse,updatedOut): #takes output from above and puts in. isReve
                         tempinsdict[pos].append(nt)
                     else:
                         tempinsdict[pos] = [nt]
-                elif q >= args.qual:
+                elif q == '-' or q >= args.qual:
                     if nt in FORWARD_DICT[pos]:
                         FORWARD_DICT[pos][nt] = FORWARD_DICT[pos][nt] + 1
                     else:
