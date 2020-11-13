@@ -75,13 +75,7 @@ def compare_rows(row1, row2, err=1e-6):
     return ok
 
 
-if __name__ == '__main__':
-
-    args = parse_args()
-
-    csv1 = load_csv(args.filename[0])
-    csv2 = load_csv(args.filename[1])
-
+def compare_csvs(csv1, csv2):
     dict1 = make_dict(csv1, args.key)
     dict2 = make_dict(csv2, args.key)
 
@@ -107,3 +101,14 @@ if __name__ == '__main__':
 
     print("\n", ok_count, "rows match")
     print(bad_count, "rows do not match\n")
+
+
+if __name__ == '__main__':
+
+    args = parse_args()
+
+    csv1 = load_csv(args.filename[0])
+    csv2 = load_csv(args.filename[1])
+
+    compare_csvs(csv1, csv2)
+
