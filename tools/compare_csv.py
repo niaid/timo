@@ -75,9 +75,9 @@ def compare_rows(row1, row2, err=1e-6):
     return ok
 
 
-def compare_csvs(csv1, csv2):
-    dict1 = make_dict(csv1, args.key)
-    dict2 = make_dict(csv2, args.key)
+def compare_csvs(csv1, csv2, key, err):
+    dict1 = make_dict(csv1, key)
+    dict2 = make_dict(csv2, key)
 
     ok_count = 0
     bad_count = 0
@@ -91,7 +91,7 @@ def compare_csvs(csv1, csv2):
             bad_count = bad_count+1
             continue
 
-        if compare_rows(row1, row2, args.error):
+        if compare_rows(row1, row2, err):
             ok_count = ok_count+1
         else:
             bad_count = bad_count+1
@@ -99,8 +99,11 @@ def compare_csvs(csv1, csv2):
             print(row1)
             print(row2)
 
-    print("\n", ok_count, "rows match")
+    print("")
+    print(ok_count, "rows match")
     print(bad_count, "rows do not match\n")
+
+    return bad_count
 
 
 if __name__ == '__main__':
@@ -110,5 +113,5 @@ if __name__ == '__main__':
     csv1 = load_csv(args.filename[0])
     csv2 = load_csv(args.filename[1])
 
-    compare_csvs(csv1, csv2)
+    compare_csvs(csv1, csv2, args.key, args.error)
 
