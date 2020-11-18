@@ -10,7 +10,9 @@ def getData():
     root_dir = os.path.dirname(script_dir)
 
     data_files = [
-        [ 'CV_19_fixed.cov19.rmd.merged.bam', '5fb5412e50a41e3d195dc035' ]
+        [ 'CV_19_fixed.cov19.rmd.merged.bam', '5fb5412e50a41e3d195dc035' ],
+        [ 'CV_19_fixed.cov19.rmd.merged.bam.bai', '5fb573cd50a41e3d195e569e', ],
+        [ 'Results/CV_19_fixed.STRAIN.SARS-CoV2.0.01.snplist.csv', '5fb573db50a41e3d195e56a8' ],
     ]
 
 
