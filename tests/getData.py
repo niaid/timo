@@ -17,6 +17,9 @@ def getData():
 
 
     data_dir = root_dir + '/Data/'
+    results_dir = data_dir + 'Results'
+    if not os.path.exists(results_dir):
+        os.makedirs(results_dir)
 
     url = 'https://data.kitware.com/api/v1/file/'
 
