@@ -5,6 +5,7 @@ from __future__ import print_function
 
 import csv
 import argparse
+import sys
 
 
 def parse_args():
@@ -113,5 +114,6 @@ if __name__ == '__main__':
     csv1 = load_csv(args.filename[0])
     csv2 = load_csv(args.filename[1])
 
-    compare_csvs(csv1, csv2, args.key, args.error)
+    ret = compare_csvs(csv1, csv2, args.key, args.error)
 
+    sys.exit(ret)
