@@ -26,5 +26,6 @@ jobs:
     - name: Run the tests
       working-directory: ./timo
       run: |
+        ls tests
         python -m unittest discover -s tests
 
