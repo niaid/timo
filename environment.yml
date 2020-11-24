@@ -1,0 +1,10 @@
+name: timo
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - pip
+  - scipy
+  - pip:
+    - pysam
