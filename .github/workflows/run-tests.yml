@@ -24,7 +24,6 @@ jobs:
         ls
         pwd
     - name: Run the tests
-      working-directory: ./timo
       run: |
         ls -R
         pwd
